@@ -1,9 +1,9 @@
 import os
 import allure
 from model.pages.search_information_page import SearchInformationPage
-from selene import browser
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+# from selene import browser
+# from selenium.webdriver.chrome.service import Service
+# from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 from openpyxl import load_workbook
 from resources.script_os import TMP_DIR
@@ -21,8 +21,8 @@ def test_cart():
         "download.prompt_for_download": False,
     }
     options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    browser.config.driver = driver
+    # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    # browser.config.driver = driver
 
     search = SearchInformationPage()
 
