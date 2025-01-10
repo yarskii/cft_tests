@@ -7,7 +7,7 @@ from model.pages.search_information_page import SearchInformationPage
 @allure.label("owner", "Ярослав Гусев")
 @allure.description("Тест для проверки информации на странице")
 @allure.link("https://www.cft.ru/", name="Testing")
-def test_search_():
+def test_search_about():
     search = SearchInformationPage()
 
     with allure.step('Открывает сайт "https://www.cft.ru/"'):
