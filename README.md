@@ -12,43 +12,42 @@
 
 ## Используемые инструменты
 
-### Selene
-
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yashaka/selene/master/docs/images/selene_logo.png" alt="Selene Logo" width="200" height="200">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original-wordmark.svg" alt="Python Logo" height="40" width="40" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/selenium/selenium-original.svg" height="40" width="40" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/chrome/chrome-original-wordmark.svg" alt="Chrome Logo" height="40" width="40" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jenkins/jenkins-original.svg" alt="Jenkins Logo" height="40" width="40" />
+  <img src="https://avatars.githubusercontent.com/u/5879127?s=200&v=4" alt="Allure Logo" height="40" width="40" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Telegram_2019_Logo.svg" alt="Telegram Logo" height="40" width="40" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytest/pytest-original.svg" alt="Pytest Logo" height="40" width="40" />
 </p>
+
+### Selene
 
 Selene — это удобная библиотека для автоматизации тестирования веб-приложений на Python. Она основана на Selenium и предоставляет более простой и удобный API для написания тестов.
 
 ### Allure
 
-<p align="center">
-  <img src="https://allurereport.org/assets/images/allure-logo.svg" alt="Allure Logo" width="200" height="200">
-</p>
-
 Allure — это гибкий легкий многоязычный фреймворк для создания отчетов о тестировании. Он предоставляет подробные отчеты о результатах тестирования.
 
 ### Python
-
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/200px-Python-logo-notext.svg.png" alt="Python Logo" width="200" height="200">
-</p>
 
 Python — это высокоуровневый язык программирования общего назначения, который широко используется для автоматизации и тестирования.
 
 ### Jenkins
 
-<p align="center">
-  <img src="https://www.jenkins.io/images/logos/jenkins/jenkins.png" alt="Jenkins Logo" width="200" height="200">
-</p>
-
 Jenkins — это популярный открытый сервер автоматизации, который можно использовать для автоматизации различных этапов разработки, включая сборку, тестирование и развертывание приложений. Jenkins может быть настроен для автоматического запуска ваших тестов после каждого коммита в репозиторий.
+
+### Pytest
+
+Pytest — это мощный и удобный фреймворк для написания и запуска тестов на Python. Он поддерживает множество плагинов и интеграций, что делает его идеальным выбором для автоматизированного тестирования.
 
 ## Содержание
 
 - [Установка](#установка)
 - [Запуск тестов](#запуск-тестов)
 - [Генерация отчетов Allure](#генерация-отчетов-allure)
+- [Лицензия](#лицензия)
 
 ## Установка
 
@@ -114,6 +113,10 @@ Jenkins — это популярный открытый сервер автом
 После выполнения тестов с параметром `--alluredir`, вы можете сгенерировать отчет следующей командой:
 
     allure serve allure-results
+
+## Лицензия
+
+Этот проект лицензирован под MIT License. Подробности смотрите в файле [LICENSE](LICENSE).
 
 ---
 
