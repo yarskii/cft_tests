@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 import os
 from resources import attach
 
-
 DEFAULT_BROWSER_VERSION = "126.0"
 
 
@@ -60,7 +59,6 @@ def open_browser(request):
 
     browser.config.base_url = 'https://www.cft.ru/'
 
-
     yield driver
 
     attach.add_screenshot(browser)
@@ -69,20 +67,3 @@ def open_browser(request):
     attach.add_video(browser)
 
     driver.quit()
-
-
-# @pytest.fixture(scope='session', autouse=True)
-# def open_url():
-#     driver_options = webdriver.ChromeOptions()
-#
-#     driver_options.page_load_strategy = 'eager'
-#     browser.config.driver_options = driver_options
-#
-#     browser.config.window_width = 1280
-#     browser.config.window_height = 724
-#
-#     browser.config.base_url = 'https://www.cft.ru/'
-#
-#     yield
-#
-#     browser.quit()
