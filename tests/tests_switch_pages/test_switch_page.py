@@ -29,6 +29,12 @@ def test_switch_page_catalog():
                 browser.switch_to_tab(-1)
 
 
+@allure.tag('web')
+@allure.feature("Переключение между вкладками")
+@allure.story("Проверка корректного переключения между вкладками пользователем")
+@allure.label("owner", "Ярослав Гусев")
+@allure.description("Тест для проверки перехода по выбранному пути")
+@allure.link("https://www.cft.ru/", name="Testing")
 def test_switch_page_cftbank():
     search = SearchInformationPage()
 
@@ -48,6 +54,12 @@ def test_switch_page_cftbank():
                 browser.switch_to_tab(-1)
 
 
+@allure.tag('web')
+@allure.feature("Переключение между вкладками")
+@allure.story("Проверка корректного переключения между вкладками пользователем")
+@allure.label("owner", "Ярослав Гусев")
+@allure.description("Тест для проверки перехода по выбранному пути")
+@allure.link("https://www.cft.ru/", name="Testing")
 def test_switch_page_platforms():
     search = SearchInformationPage()
 
@@ -67,6 +79,12 @@ def test_switch_page_platforms():
                 browser.switch_to_tab(-1)
 
 
+@allure.tag('web')
+@allure.feature("Переключение между вкладками")
+@allure.story("Проверка корректного переключения между вкладками пользователем")
+@allure.label("owner", "Ярослав Гусев")
+@allure.description("Тест для проверки перехода по выбранному пути")
+@allure.link("https://www.cft.ru/", name="Testing")
 def test_switch_page_services():
     search = SearchInformationPage()
 
