@@ -1,9 +1,6 @@
 import os
 import allure
 from model.pages.search_information_page import SearchInformationPage
-# from selene import browser
-# from selenium.webdriver.chrome.service import Service
-# from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 from openpyxl import load_workbook
 from resources.script_os import TMP_DIR
@@ -21,8 +18,6 @@ def test_cart():
         "download.prompt_for_download": False,
     }
     options.add_experimental_option("prefs", prefs)
-    # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    # browser.config.driver = driver
 
     search = SearchInformationPage()
 
@@ -53,27 +48,37 @@ def test_cart():
         search.process('Очистить корзину')
 
 
+@allure.tag('web')
+@allure.feature("Проверка загруженного файла")
+@allure.label("owner", "Ярослав Гусев")
+@allure.description("Тест проверки скачанного файла из корзины")
+@allure.link("https://www.cft.ru/", name="Testing")
 def test_downloaded_file():
     search = SearchInformationPage()
 
-    files = os.listdir(TMP_DIR)
-    if len(files) > 0:
-        for file in files:
-            file_xlsx = os.path.join(TMP_DIR, file)
-            try:
-                workbook = load_workbook(file_xlsx)
-                sheet = workbook.active
-                text_xlsx = ''
-                for row in sheet.iter_rows():
-                    for cell in row:
-                        if cell.value is None:
-                            continue
-                        text_xlsx += f'{cell.value} \n'
-                print('Проверка прошла успешно.')
-            except Exception as e:
-                print(f"Ошибка при чтении файла {file_xlsx}: {e}")
-    else:
-        print('Нет папки, либо папка пуста!')
+    with allure.step('Проверяем наличие скачанных файлов'):
+        files = os.listdir(TMP_DIR)
+        if len(files) > 0:
+            for file in files:
+                file_xlsx = os.path.join(TMP_DIR, file)
+                try:
+                    workbook = load_workbook(file_xlsx)
+                    sheet = workbook.active
+                    text_xlsx = ''
+                    for row in sheet.iter_rows():
+                        for cell in row:
+                            if cell.value is None:
+                                continue
+                            text_xlsx += f'{cell.value} \n'
+                    print('Файл существует и содержит информацию.')
+                    allure.attach(text_xlsx, name=f'Content of {file}', attachment_type=allure.attachment_type.TEXT)
+                except Exception as e:
+                    print(f"Ошибка при чтении файла {file_xlsx}: {e}")
+                    allure.attach(str(e), name=f'Error reading {file}', attachment_type=allure.attachment_type.TEXT)
+        else:
+            print('Нет папки, либо папка пуста!')
+            allure.attach('No files found or directory is empty', name='Directory Check',
+                          attachment_type=allure.attachment_type.TEXT)
 
     with allure.step('Удаляем временные файлы'):
         search.del_temporary_folder()
