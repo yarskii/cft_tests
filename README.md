@@ -211,7 +211,7 @@ sequenceDiagram
 ### Cкриншот со траницы тестов Jenkins
 
    <p align="center">
-   <img src="https://github.com/yarskii/cft_tests/tree/main/docs/screenshots/jenkins_homepage.png" alt="Архитектура проекта" width="630" height="320"/>
+      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/jenkins_homepage.png" alt="Архитектура проекта" width="630" height="320"/>
    </p>
 
 ---
