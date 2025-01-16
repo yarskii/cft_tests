@@ -71,6 +71,8 @@
 ## Установка
 
 ### Клонирование репозитория
+   
+Для начала работы, клонируйте репозиторий и перейдите в директорию проекта:
 
     git clone https://github.com/yarskii/cft_tests.git
     cd cft_tests
@@ -101,11 +103,11 @@
 
 ### Локальный запуск
 
-Для запуска всех тестов:
+Чтобы запустить все тесты, выполните команду:
 
     pytest
 
-Для запуска конкретного теста:
+Для запуска конкретного теста, используйте следующую команду:
 
     pytest tests/test_switch_page_catalog.py
 
@@ -227,10 +229,10 @@ sequenceDiagram
       <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/allure_tests.png" alt="Детальный отчёт о пройденном тесте" width="630" height="320"/>
    </p>
 
-### Видеопрохождение теста
+### Видео-отчет о прохождении теста
    
    <p align="center">
-      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/video_test.gif" alt="Видеопрохождение теста" width="630" height="320"/>
+      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/video_test.gif" alt="Видео-отчет о прохождении теста" width="630" height="320"/>
    </p>
 
 ### Отчет в Telegram
