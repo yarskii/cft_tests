@@ -62,6 +62,7 @@
 - [Запуск тестов](#запуск-тестов)
 - [Генерация отчетов Allure](#генерация-отчетов-allure)
 - [Запуск проекта в Jenkins](#запуск-проекта-в-Jenkins)
+- [Диаграммы](#диаграммы)
 - [Лицензия](#лицензия)
 
 ---
@@ -203,19 +204,6 @@ sequenceDiagram
     Jenkins->>Allure: Генерация Отчета
     Allure-->>Developer: Просмотр Отчета
 ```
-
-### CI/CD Pipeline
-
-<div class="mermaid">
-graph TD
-    A[Push to GitHub] --> B[Jenkins Trigger]
-    B --> C[Build & Test]
-    C --> D[Generate Report]
-    D --> E[Notify Team]
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true});</script>script>mermaid.initialize({startOnLoad:true});</script>
 
 ---
 
