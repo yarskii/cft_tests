@@ -63,6 +63,7 @@
 - [Генерация отчетов Allure](#генерация-отчетов-allure)
 - [Запуск проекта в Jenkins](#запуск-проекта-в-Jenkins)
 - [Диаграммы](#диаграммы)
+- [Скриншоты](#скриншоты)
 - [Лицензия](#лицензия)
 
 ---
@@ -208,10 +209,34 @@ sequenceDiagram
 
 ## Скриншоты
 
-### Cкриншот со траницы тестов Jenkins
+### Cтраница тестов Jenkins
 
    <p align="center">
-      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/jenkins_homepage.png" alt="Архитектура проекта" width="630" height="320"/>
+      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/jenkins_homepage.png" alt="Cтраница тестов Jenkins" width="630" height="320"/>
+   </p>
+
+### Общий отчёт Allure
+
+   <p align="center">
+      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/allure_report.png" alt="Общий отчёт Allure" width="630" height="320"/>
+   </p>
+
+### Детальный отчёт о пройденном тесте
+
+   <p align="center">
+      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/allure_tests.png" alt="Детальный отчёт о пройденном тесте" width="630" height="320"/>
+   </p>
+
+### Видеопрохождение теста
+   
+   <p align="center">
+      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/video_test.gif" alt="Видеопрохождение теста" width="630" height="320"/>
+   </p>
+
+### Отчет в Telegram
+
+   <p align="center">
+      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/telegram_report.png" alt="Отчет в Telegram" width="630" height="320"/>
    </p>
 
 ---
