@@ -2,16 +2,11 @@
 
 ---
 
-[![GitHub license](https://img.shields.io/github/license/yarskii/cft_tests)](LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/yarskii/cft_tests)](https://github.com/yarskii/cft_tests/issues)
-[![GitHub forks](https://img.shields.io/github/forks/yarskii/cft_tests)](https://github.com/yarskii/cft_tests/network)
-[![GitHub stars](https://img.shields.io/github/stars/yarskii/cft_tests)](https://github.com/yarskii/cft_tests/stargazers)
-
 Этот проект содержит автоматизированные тесты для веб-сайта [Центр Финансовых Технологий](https://www.cft.ru/).
 
 ## Описание
 
-Проект включает в себя набор автоматизированных тестов, написанных с использованием фреймворков Selenium и Allure. Тесты
+Проект включает в себя набор автоматизированных тестов, написанных с использованием фреймворков Selene и Allure. Тесты
 проверяют функциональность сайта, включая переключение между вкладками, добавление товаров в корзину и загрузку файлов.
 
 ---
@@ -38,17 +33,6 @@
 Это гибкий легкий многоязычный фреймворк для создания отчетов о тестировании. Он предоставляет подробные отчеты о
 результатах тестирования.
 
-### Python
-
-Это высокоуровневый язык программирования общего назначения, который широко используется для автоматизации и
-тестирования.
-
-### Jenkins
-
-Это популярный открытый сервер автоматизации, который можно использовать для автоматизации различных этапов разработки,
-включая сборку, тестирование и развертывание приложений. Jenkins может быть настроен для автоматического запуска ваших
-тестов после каждого коммита в репозиторий.
-
 ### Pytest
 
 Это мощный и удобный фреймворк для написания и запуска тестов на Python. Он поддерживает множество плагинов и
@@ -58,59 +42,52 @@
 
 ## Содержание
 
-- [Установка](#установка)
-- [Запуск тестов](#запуск-тестов)
-- [Генерация отчетов Allure](#генерация-отчетов-allure)
-- [Запуск проекта в Jenkins](#запуск-проекта-в-Jenkins)
-- [Диаграммы](#диаграммы)
-- [Скриншоты](#скриншоты)
-- [Лицензия](#лицензия)
-
----
-
-## Установка
+<details>
+<summary>Установка</summary>
 
 ### Клонирование репозитория
    
 Для начала работы, клонируйте репозиторий и перейдите в директорию проекта:
-
+   ```sh
     git clone https://github.com/yarskii/cft_tests.git
     cd cft_tests
-
+   ```
 ### Создание виртуального окружения (опционально)
-
+   ```sh
     python -m venv venv
     source venv/bin/activate  # Для Linux/macOS
     .\venv\Scripts\activate   # Для Windows
-
+   ```
 ### Установка зависимостей
 
 Создайте файл `requirements.txt`, содержащий список всех зависимостей проекта:
-
+   ```sh
     pip freeze > requirements.txt
-
+   ```
 Затем установите зависимости:
-
+   ```sh
     pip install -r requirements.txt
-
+   ```
 Если у вас уже есть файл `requirements.txt`, просто выполните команду:
-
+   ```sh
     pip install -r requirements.txt
+   ```
 
----
+</details>
 
-## Запуск тестов
+<details>
+<summary>Запуск тестов</summary>
 
 ### Локальный запуск
 
 Чтобы запустить все тесты, выполните команду:
-
+   ```sh
     pytest
-
+   ```
 Для запуска конкретного теста, используйте следующую команду:
-
+   ```sh
     pytest tests/test_switch_page_catalog.py
-
+   ```
 ### Параметры запуска
 
 Вы можете использовать различные параметры для управления поведением тестов:
@@ -120,12 +97,14 @@
 - `--alluredir=allure-results`: Сохранять результаты тестов для генерации отчетов Allure.
 
 Пример команды:
-
+   ```sh
     pytest --alluredir=allure-results
+   ```
+</details>
 
----
 
-## Генерация отчетов Allure
+<details>
+<summary>Генерация отчетов Allure</summary>
 
 ### Установка Allure Commandline
 
@@ -135,12 +114,13 @@
 ### Генерация отчета
 
 После выполнения тестов с параметром `--alluredir`, вы можете сгенерировать отчет следующей командой:
-
+   ```sh
     allure serve allure-results
+   ```
+</details>
 
----
-
-### Запуск проекта в Jenkins:
+<details>
+<summary>Запуск проекта в Jenkins</summary>
 
 1. Откройте [проект](https://jenkins.autotests.cloud/job/tests_cft/)
 2. Выберите `Build with parameters`
@@ -154,40 +134,9 @@
 > **Доступные параметры**:
 > - Варианты тестов: `tests`, `tests/tests_switch_pages`, `tests/tests_search_information`
 > - Версия браузера: `99`, `100`, `113`, `114`, `120`, `121`, `122`, `123`, `124`, `125`, `126`
-
----
+</details>
 
 ## Диаграммы
-
-### Архитектура проекта
-
-```mermaid
-graph TD
-    subgraph GitHub
-        A[GitHub Репозиторий]
-    end
-
-    subgraph LocalDevEnv
-        B[Клонирование Репозитория]
-        C[Установка Зависимостей]
-        D[Активация Виртуального Окружения]
-    end
-
-    subgraph Jenkins
-        E[Сборка с Параметрами]
-        F[Запуск Тестов]
-    end
-
-    subgraph Allure
-        G[Генерация Отчета]
-    end
-
-    A --> B
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-```
 
 ### Последовательность действий при запуске тестов
 
@@ -238,7 +187,7 @@ sequenceDiagram
 ### Отчет в Telegram
 
    <p align="center">
-      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/telegram_report.png" alt="Отчет в Telegram" width="630" height="320"/>
+      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/telegram_report.png" alt="Отчет в Telegram" width="530" height="320"/>
    </p>
 
 ---
