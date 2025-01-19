@@ -128,7 +128,8 @@
 ---
 </details>
 
-## Диаграммы
+<details>
+<summary>Диграмма</summary>
 
 ### Последовательность действий при запуске тестов
 
@@ -148,9 +149,10 @@ sequenceDiagram
     Jenkins->>Allure: Генерация Отчета
     Allure-->>Developer: Просмотр Отчета
 ```
----
+</details>
 
-## Скриншоты
+<details>
+<summary>Скриншоты</summary>
 
 ### Cтраница тестов Jenkins
 
@@ -181,6 +183,7 @@ sequenceDiagram
    <p align="center">
       <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/telegram.png" alt="Отчет в Telegram"/>
    </p>
+</details>
 
 ---
 
