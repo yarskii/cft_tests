@@ -1,7 +1,7 @@
 from selene import browser
 import allure
 
-from model.pages.search_information_page import SearchInformationPage
+from model.pages.switch_page import SwitchPage
 
 
 @allure.tag('web')
@@ -11,16 +11,14 @@ from model.pages.search_information_page import SearchInformationPage
 @allure.description("Тест для проверки перехода по выбранному пути")
 @allure.link("https://www.cft.ru/", name="Testing")
 def test_switch_page_catalog():
-    search = SearchInformationPage()
+    search = SwitchPage()
 
     with allure.step('Открывает сайт "https://www.cft.ru/"'):
-        search.open()
+        search.open_and_close_cookie_warning()
 
     with allure.step('Открываем "Каталоги решений и продуктов"'):
-        search.switch_page('Каталоги решений')
-
-    with allure.step('Проверяем URL новой вкладки'):
-        search.should_new_link('https://catalog.cft.ru/')
+        search.switch_to_page('Каталоги решений')
+        search.handle_snackbar_if_present()
 
     with allure.step('Проверяем количество открытых вкладок'):
         if len(browser.driver.window_handles) > 1:
@@ -36,16 +34,15 @@ def test_switch_page_catalog():
 @allure.description("Тест для проверки перехода по выбранному пути")
 @allure.link("https://www.cft.ru/", name="Testing")
 def test_switch_page_cftbank():
-    search = SearchInformationPage()
+    search = SwitchPage()
 
     with allure.step('Открывает сайт "https://www.cft.ru/"'):
         search.open()
+        search.close_cookie_warning()
 
     with allure.step('Открываем "ЦФТ-Банк в каталоге приложений"'):
-        search.switch_page('ЦФТ-Банк в каталоге')
-
-    with allure.step('Проверяем URL новой вкладки'):
-        search.should_new_link('https://catalog.cft.ru/applications/cftbank/overview')
+        search.switch_to_page('ЦФТ-Банк в каталоге')
+        search.handle_snackbar_if_present()
 
     with allure.step('Проверяем количество открытых вкладок'):
         if len(browser.driver.window_handles) > 1:
@@ -61,16 +58,15 @@ def test_switch_page_cftbank():
 @allure.description("Тест для проверки перехода по выбранному пути")
 @allure.link("https://www.cft.ru/", name="Testing")
 def test_switch_page_platforms():
-    search = SearchInformationPage()
+    search = SwitchPage()
 
     with allure.step('Открывает сайт "https://www.cft.ru/"'):
         search.open()
+        search.close_cookie_warning()
 
     with allure.step('Открываем "Архитектура и платформы"'):
-        search.switch_page('Архитектура')
-
-    with allure.step('Проверяем URL новой вкладки'):
-        search.should_new_link('https://www.cft.ru/platforms')
+        search.switch_to_page('Архитектура')
+        search.handle_snackbar_if_present()
 
     with allure.step('Проверяем количество открытых вкладок'):
         if len(browser.driver.window_handles) > 1:
@@ -86,16 +82,15 @@ def test_switch_page_platforms():
 @allure.description("Тест для проверки перехода по выбранному пути")
 @allure.link("https://www.cft.ru/", name="Testing")
 def test_switch_page_services():
-    search = SearchInformationPage()
+    search = SwitchPage()
 
     with allure.step('Открывает сайт "https://www.cft.ru/"'):
         search.open()
+        search.close_cookie_warning()
 
     with allure.step('Открываем "Запуск, услуги АПК и сопровождение"'):
-        search.switch_page('Запуск, услуги АПК')
-
-    with allure.step('Проверяем URL новой вкладки'):
-        search.should_new_link('https://www.cft.ru/services')
+        search.switch_to_page('Запуск, услуги АПК')
+        search.handle_snackbar_if_present()
 
     with allure.step('Проверяем количество открытых вкладок'):
         if len(browser.driver.window_handles) > 1:

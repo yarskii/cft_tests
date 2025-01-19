@@ -2,15 +2,14 @@ import os
 import allure
 from model.pages.search_information_page import SearchInformationPage
 from selenium import webdriver
-from openpyxl import load_workbook
-from resources.script_os import TMP_DIR
+from scripts.file_system_operations import TMP_DIR
 
 
 @allure.tag('web')
 @allure.feature("Загрузка файла из корзины")
 @allure.label("owner", "Ярослав Гусев")
 @allure.description("Тест добавления файлов в корзину и проверки заказа")
-@allure.link("https://www.cft.ru/", name="Testing")
+@allure.link("https://catalog.cft.ru/", name="Testing")
 def test_cart():
     options = webdriver.ChromeOptions()
     prefs = {
@@ -21,11 +20,9 @@ def test_cart():
 
     search = SearchInformationPage()
 
-    with allure.step('Открывает сайт "https://www.cft.ru/"'):
+    with allure.step('Открывает сайт "https://catalog.cft.ru/"'):
         search.open()
-
-    with allure.step('Открываем "Каталоги решений и продуктов"'):
-        search.switch_page('Каталоги решений')
+        search.handle_snackbar_if_present()
 
     with allure.step('Открываем боковую панель"'):
         search.open_sidebar()
@@ -40,45 +37,36 @@ def test_cart():
         search.add_all_in_basket()
 
     with allure.step('Переходим в корзину'):
-        search.user_dashboard_actions('Корзина')
+        search.select_cart()
 
     with allure.step('Добавляем зависимости, выгружаем Exel файл и очищаем корзину'):
-        search.process('Добавить зависимости')
-        search.process('Выгрузить в Excel')
-        search.process('Очистить корзину')
+        search.add_dependencies()
+        search.export_to_excel()
+        search.clear_cart()
 
 
 @allure.tag('web')
 @allure.feature("Проверка загруженного файла")
 @allure.label("owner", "Ярослав Гусев")
 @allure.description("Тест проверки скачанного файла из корзины")
-@allure.link("https://www.cft.ru/", name="Testing")
+@allure.link("https://catalog.cft.ru/", name="Testing")
 def test_downloaded_file():
     search = SearchInformationPage()
 
     with allure.step('Проверяем наличие скачанных файлов'):
+        assert os.path.exists(TMP_DIR), f"Директория {TMP_DIR} не существует."
+
         files = os.listdir(TMP_DIR)
-        if len(files) > 0:
-            for file in files:
-                file_xlsx = os.path.join(TMP_DIR, file)
-                try:
-                    workbook = load_workbook(file_xlsx)
-                    sheet = workbook.active
-                    text_xlsx = ''
-                    for row in sheet.iter_rows():
-                        for cell in row:
-                            if cell.value is None:
-                                continue
-                            text_xlsx += f'{cell.value} \n'
-                    print('Файл существует и содержит информацию.')
-                    allure.attach(text_xlsx, name=f'Content of {file}', attachment_type=allure.attachment_type.TEXT)
-                except Exception as e:
-                    print(f"Ошибка при чтении файла {file_xlsx}: {e}")
-                    allure.attach(str(e), name=f'Error reading {file}', attachment_type=allure.attachment_type.TEXT)
-        else:
-            print('Нет папки, либо папка пуста!')
-            allure.attach('No files found or directory is empty', name='Directory Check',
-                          attachment_type=allure.attachment_type.TEXT)
+        assert len(files) > 0, 'Нет папки, либо папка пуста!'
+
+        for file in files:
+            file_xlsx = os.path.join(TMP_DIR, file)
+            assert os.path.isfile(file_xlsx), f"Файл {file} не найден или это не файл."
+
+            file_size = os.path.getsize(file_xlsx)
+            assert file_size > 0, f"Файл {file} пустой."
+
+            print(f'Файл {file} существует и содержит информацию.')
 
     with allure.step('Удаляем временные файлы'):
         search.del_temporary_folder()
