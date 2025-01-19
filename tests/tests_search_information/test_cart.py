@@ -1,7 +1,6 @@
 import os
 import allure
 from model.pages.search_information_page import SearchInformationPage
-from selenium import webdriver
 from scripts.file_system_operations import TMP_DIR
 
 
@@ -11,13 +10,6 @@ from scripts.file_system_operations import TMP_DIR
 @allure.description("Тест добавления файлов в корзину и проверки заказа")
 @allure.link("https://catalog.cft.ru/", name="Testing")
 def test_cart():
-    options = webdriver.ChromeOptions()
-    prefs = {
-        "download.default_directory": TMP_DIR,
-        "download.prompt_for_download": False,
-    }
-    options.add_experimental_option("prefs", prefs)
-
     search = SearchInformationPage()
 
     with allure.step('Открывает сайт "https://catalog.cft.ru/"'):
