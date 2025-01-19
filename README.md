@@ -154,32 +154,32 @@ sequenceDiagram
 
 ### Cтраница тестов Jenkins
 
-   <p>
+   <p align="center">
       <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/jenkins_homepage.png" alt="Cтраница тестов Jenkins" width="630" height="320"/>
    </p>
 
 ### Общий отчёт Allure
 
-   <p>
+   <p align="center">
       <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/allure_report.png" alt="Общий отчёт Allure" width="630" height="320"/>
    </p>
 
 ### Детальный отчёт о пройденном тесте
 
-   <p>
+   <p align="center">
       <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/allure_tests.png" alt="Детальный отчёт о пройденном тесте" width="630" height="320"/>
    </p>
 
 ### Видео-отчет о прохождении теста
    
-   <p>
+   <p align="center">
       <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/video_test.gif" alt="Видео-отчет о прохождении теста" width="630" height="320"/>
    </p>
 
 ### Отчет в Telegram
 
-   <p>
-      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/telegram.png" alt="Отчет в Telegram" width="630" height="320"/>
+   <p align="center">
+      <img src="https://github.com/yarskii/cft_tests/blob/main/docs/screenshots/telegram.png" alt="Отчет в Telegram"/>
    </p>
 
 ---
