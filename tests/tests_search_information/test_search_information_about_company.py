@@ -1,5 +1,8 @@
 import allure
 from model.pages.search_information_page import SearchInformationPage
+from model.sidebars.left_sidebar import SidebarLeft
+from model.warnings.warning_handler import WarningHandler
+from selene import browser
 
 
 @allure.tag('web')
@@ -9,16 +12,18 @@ from model.pages.search_information_page import SearchInformationPage
 @allure.link("https://catalog.cft.ru/", name="Testing")
 def test_search_about():
     search = SearchInformationPage()
+    sidebar = SidebarLeft()
+    warning = WarningHandler()
 
     with allure.step('Открывает сайт "https://catalog.cft.ru/"'):
-        search.open()
-        search.handle_snackbar_if_present()
+        browser.open('https://catalog.cft.ru/')
+        warning.close_handle_snackbar_if_present()
 
     with allure.step('Открываем боковую панель"'):
-        search.open_sidebar()
+        sidebar.open_sidebar()
 
     with allure.step('Переходим на страницу "О Компании"'):
-        search.module_choice('О компании')
+        sidebar.module_choice('О компании')
 
     with allure.step('Проверяем информацию на странице'):
         search.should_verify_text('ЗАО «Центр Финансовых Технологий» (ЗАО «ЦФТ») – '

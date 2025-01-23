@@ -1,7 +1,12 @@
 import os
 import allure
+from selene import browser
+from model.pages.cart_page import Cart
 from model.pages.search_information_page import SearchInformationPage
+from model.sidebars.left_sidebar import SidebarLeft
+from model.warnings.warning_handler import WarningHandler
 from scripts.file_system_operations import TMP_DIR
+import shutil
 
 
 @allure.tag('web')
@@ -11,30 +16,33 @@ from scripts.file_system_operations import TMP_DIR
 @allure.link("https://catalog.cft.ru/", name="Testing")
 def test_cart():
     search = SearchInformationPage()
+    warning = WarningHandler()
+    sidebar = SidebarLeft()
+    cart = Cart()
 
     with allure.step('Открывает сайт "https://catalog.cft.ru/"'):
-        search.open()
-        search.handle_snackbar_if_present()
+        browser.open('https://catalog.cft.ru/')
+        warning.close_handle_snackbar_if_present()
 
     with allure.step('Открываем боковую панель"'):
-        search.open_sidebar()
+        sidebar.open_sidebar()
 
     with allure.step('Открываем вкладку "Готовые Решения"'):
-        search.module_choice('Готовые Решения')
+        sidebar.module_choice('Готовые Решения')
 
     with allure.step('Переходим на страницу "Универсальный банк"'):
-        search.module_choice('Универсальный банк')
+        sidebar.module_choice('Универсальный банк')
 
     with allure.step('Добавляем все в корзину"'):
         search.add_all_in_basket()
 
     with allure.step('Переходим в корзину'):
-        search.select_cart()
+        cart.select_cart()
 
     with allure.step('Добавляем зависимости, выгружаем Exel файл и очищаем корзину'):
-        search.add_dependencies()
-        search.export_to_excel()
-        search.clear_cart()
+        cart.add_dependencies()
+        cart.export_to_excel()
+        cart.clear_cart()
 
 
 @allure.tag('web')
@@ -43,8 +51,6 @@ def test_cart():
 @allure.description("Тест проверки скачанного файла из корзины")
 @allure.link("https://catalog.cft.ru/", name="Testing")
 def test_downloaded_file():
-    search = SearchInformationPage()
-
     with allure.step('Проверяем наличие скачанных файлов'):
         assert os.path.exists(TMP_DIR), f"Директория {TMP_DIR} не существует."
 
@@ -61,4 +67,5 @@ def test_downloaded_file():
             print(f'Файл {file} существует и содержит информацию.')
 
     with allure.step('Удаляем временные файлы'):
-        search.del_temporary_folder()
+        if os.path.exists(TMP_DIR):
+            shutil.rmtree(TMP_DIR)
