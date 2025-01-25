@@ -1,7 +1,12 @@
-from selene import browser
 import allure
-from model.pages.switch_page import SwitchPage
+
+from model.pages.search_information_page import SearchInformationPage
+from model.pages.navigation_helper import NavigationHelper
 from model.warnings.warning_handler import WarningHandler
+
+switch = NavigationHelper()
+search = SearchInformationPage()
+warning = WarningHandler()
 
 
 @allure.tag('web')
@@ -11,22 +16,26 @@ from model.warnings.warning_handler import WarningHandler
 @allure.description("Тест для проверки перехода по выбранному пути")
 @allure.link("https://www.cft.ru/", name="Testing")
 def test_switch_page_catalog():
-    search = SwitchPage()
-    warning = WarningHandler()
-
     with allure.step('Открывает сайт "https://www.cft.ru/"'):
-        search.open()
+        switch.open()
         warning.close_cookie_warning()
 
+    with allure.step('Проверяем содержимое домашней страницы'):
+        search.validate_home_page_elements()
+
     with allure.step('Открываем "Каталоги решений и продуктов"'):
-        search.switch_to_page('Каталоги решений')
+        switch.navigate_to_page('Каталоги решений')
         warning.close_handle_snackbar_if_present()
 
-    with allure.step('Проверяем количество открытых вкладок'):
-        if len(browser.driver.window_handles) > 1:
-            with allure.step('Закрываем новую вкладку и возвращаемся на главную страницу'):
-                browser.close_current_tab()
-                browser.switch_to_tab(-1)
+    with allure.step('Проверяем, что открыта страница "Каталоги решений и продуктов" '
+                     'и отображается заголовок "Готовые Решения"'):
+        search.verify_information_on_page('Готовые Решения')
+
+    with allure.step('Закрываем новую вкладку и возвращаемся на главную страницу'):
+        switch.close_new_page()
+
+    with allure.step('Проверяем, что произошёл возврат на домашнюю страницу.'):
+        search.validate_home_page_elements()
 
 
 @allure.tag('web')
@@ -36,21 +45,25 @@ def test_switch_page_catalog():
 @allure.description("Тест для проверки перехода по выбранному пути")
 @allure.link("https://www.cft.ru/", name="Testing")
 def test_switch_page_cftbank():
-    search = SwitchPage()
-    warning = WarningHandler()
-
     with allure.step('Открывает сайт "https://www.cft.ru/"'):
-        search.open_and_close_cookie_warning()
+        switch.open_and_close_cookie_warning()
+
+    with allure.step('Проверяем содержимое домашней страницы'):
+        search.validate_home_page_elements()
 
     with allure.step('Открываем "ЦФТ-Банк в каталоге приложений"'):
-        search.switch_to_page('ЦФТ-Банк в каталоге')
+        switch.navigate_to_page('ЦФТ-Банк в каталоге')
         warning.close_handle_snackbar_if_present()
 
-    with allure.step('Проверяем количество открытых вкладок'):
-        if len(browser.driver.window_handles) > 1:
-            with allure.step('Закрываем новую вкладку и возвращаемся на главную страницу'):
-                browser.close_current_tab()
-                browser.switch_to_tab(-1)
+    with allure.step('Проверяем, что открыта страница "Каталоги решений и продуктов" '
+                     'и отображается заголовок "ЦФТ-Банк"'):
+        search.verify_information_on_page('ЦФТ-Банк')
+
+    with allure.step('Закрываем новую вкладку и возвращаемся на главную страницу'):
+        switch.close_new_page()
+
+    with allure.step('Проверяем, что произошёл возврат на домашнюю страницу.'):
+        search.validate_home_page_elements()
 
 
 @allure.tag('web')
@@ -60,21 +73,19 @@ def test_switch_page_cftbank():
 @allure.description("Тест для проверки перехода по выбранному пути")
 @allure.link("https://www.cft.ru/", name="Testing")
 def test_switch_page_platforms():
-    search = SwitchPage()
-    warning = WarningHandler()
-
     with allure.step('Открывает сайт "https://www.cft.ru/"'):
-        search.open_and_close_cookie_warning()
+        switch.open_and_close_cookie_warning()
+
+    with allure.step('Проверяем содержимое домашней страницы'):
+        search.validate_home_page_elements()
 
     with allure.step('Открываем "Архитектура и платформы"'):
-        search.switch_to_page('Архитектура')
+        switch.navigate_to_page('Архитектура')
         warning.close_handle_snackbar_if_present()
 
-    with allure.step('Проверяем количество открытых вкладок'):
-        if len(browser.driver.window_handles) > 1:
-            with allure.step('Закрываем новую вкладку и возвращаемся на главную страницу'):
-                browser.close_current_tab()
-                browser.switch_to_tab(-1)
+    with allure.step('Проверяем, что открыта страница "Каталоги решений и продуктов" '
+                     'и отображается заголовок "Архитектура и платформы"'):
+        search.verify_information_on_page('Архитектура и платформы', '.page-title')
 
 
 @allure.tag('web')
@@ -84,18 +95,16 @@ def test_switch_page_platforms():
 @allure.description("Тест для проверки перехода по выбранному пути")
 @allure.link("https://www.cft.ru/", name="Testing")
 def test_switch_page_services():
-    search = SwitchPage()
-    warning = WarningHandler()
-
     with allure.step('Открывает сайт "https://www.cft.ru/"'):
-        search.open_and_close_cookie_warning()
+        switch.open_and_close_cookie_warning()
+
+    with allure.step('Проверяем содержимое домашней страницы'):
+        search.validate_home_page_elements()
 
     with allure.step('Открываем "Запуск, услуги АПК и сопровождение"'):
-        search.switch_to_page('Запуск, услуги АПК')
+        switch.navigate_to_page('Запуск, услуги АПК')
         warning.close_handle_snackbar_if_present()
 
-    with allure.step('Проверяем количество открытых вкладок'):
-        if len(browser.driver.window_handles) > 1:
-            with allure.step('Закрываем новую вкладку и возвращаемся на главную страницу'):
-                browser.close_current_tab()
-                browser.switch_to_tab(-1)
+    with allure.step('Проверяем, что открыта страница "Каталоги решений и продуктов" '
+                     'и отображается заголовок "Запуск, услуги АПК и сопровождение"'):
+        search.verify_information_on_page('Запуск, услуги АПК и сопровождение', '.page-title')

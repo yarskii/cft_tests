@@ -1,4 +1,4 @@
-from selene import browser, be, by
+from selene import browser, be, by, have
 import time
 
 
@@ -6,6 +6,9 @@ class Cart:
 
     def select_cart(self):
         browser.element('a[href="/cart"]').should(be.visible).click()
+
+    def checking_shopping_cart(self):
+        browser.all('.MuiPagination-ul').should(have.size_greater_than(1))
 
     def add_dependencies(self):
         browser.element(by.text('Добавить зависимости')).click()

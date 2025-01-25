@@ -1,12 +1,12 @@
-import os
 import allure
 from selene import browser
+
+from model.download.download_files import DownloadFiles
 from model.pages.cart_page import Cart
 from model.pages.search_information_page import SearchInformationPage
+from model.pages.universal_bank_page import UniversalBankPage
 from model.sidebars.left_sidebar import SidebarLeft
 from model.warnings.warning_handler import WarningHandler
-from scripts.file_system_operations import TMP_DIR
-import shutil
 
 
 @allure.tag('web')
@@ -19,6 +19,7 @@ def test_cart():
     warning = WarningHandler()
     sidebar = SidebarLeft()
     cart = Cart()
+    universal_bank_page = UniversalBankPage()
 
     with allure.step('Открывает сайт "https://catalog.cft.ru/"'):
         browser.open('https://catalog.cft.ru/')
@@ -34,15 +35,21 @@ def test_cart():
         sidebar.module_choice('Универсальный банк')
 
     with allure.step('Добавляем все в корзину"'):
-        search.add_all_in_basket()
+        universal_bank_page.add_all_in_basket()
 
     with allure.step('Переходим в корзину'):
         cart.select_cart()
+
+    with allure.step('Проверяем, что корзина не пустая'):
+        cart.checking_shopping_cart()
 
     with allure.step('Добавляем зависимости, выгружаем Exel файл и очищаем корзину'):
         cart.add_dependencies()
         cart.export_to_excel()
         cart.clear_cart()
+
+    with allure.step('Проверяем, что корзина очищена'):
+        search.verify_information_on_page("Суммарная стоимость комплектации: 0 тыс.у.е.")
 
 
 @allure.tag('web')
@@ -51,21 +58,10 @@ def test_cart():
 @allure.description("Тест проверки скачанного файла из корзины")
 @allure.link("https://catalog.cft.ru/", name="Testing")
 def test_downloaded_file():
+    file = DownloadFiles()
+
     with allure.step('Проверяем наличие скачанных файлов'):
-        assert os.path.exists(TMP_DIR), f"Директория {TMP_DIR} не существует."
-
-        files = os.listdir(TMP_DIR)
-        assert len(files) > 0, 'Нет папки, либо папка пуста!'
-
-        for file in files:
-            file_xlsx = os.path.join(TMP_DIR, file)
-            assert os.path.isfile(file_xlsx), f"Файл {file} не найден или это не файл."
-
-            file_size = os.path.getsize(file_xlsx)
-            assert file_size > 0, f"Файл {file} пустой."
-
-            print(f'Файл {file} существует и содержит информацию.')
+        file.checking_download_file()
 
     with allure.step('Удаляем временные файлы'):
-        if os.path.exists(TMP_DIR):
-            shutil.rmtree(TMP_DIR)
+        file.delete_file()

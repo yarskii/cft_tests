@@ -8,6 +8,7 @@ import os
 from scripts.file_system_operations import TMP_DIR
 from utils import attach
 
+
 DEFAULT_BROWSER_VERSION = "126.0"
 
 
@@ -76,3 +77,26 @@ def open_browser(request):
     attach.add_video(browser)
 
     driver.quit()
+
+
+# @pytest.fixture(scope='session', autouse=True)
+# def open_url():
+#     driver_options = webdriver.ChromeOptions()
+#
+#     prefs = {
+#                 "download.default_directory": TMP_DIR,
+#                 "download.prompt_for_download": False,
+#                 "download.directory_upgrade": True,
+#                 "safebrowsing.enabled": True
+#             }
+#     driver_options.add_experimental_option("prefs", prefs)
+#
+#     driver_options.page_load_strategy = 'eager'
+#     driver_options.add_argument('--window-size=1280,724')
+#     browser.config.driver_options = driver_options
+#
+#     browser.config.base_url = 'https://www.cft.ru/'
+#
+#     yield
+#
+#     browser.quit()
