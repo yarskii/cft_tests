@@ -85,7 +85,7 @@ def test_switch_page_platforms():
 
     with allure.step('Проверяем, что открыта страница "Каталоги решений и продуктов" '
                      'и отображается заголовок "Архитектура и платформы"'):
-        search.verify_information_on_page('Архитектура и платформы', '.page-title')
+        search.verify_information_on_page_title('Архитектура и платформы')
 
 
 @allure.tag('web')
@@ -107,4 +107,4 @@ def test_switch_page_services():
 
     with allure.step('Проверяем, что открыта страница "Каталоги решений и продуктов" '
                      'и отображается заголовок "Запуск, услуги АПК и сопровождение"'):
-        search.verify_information_on_page('Запуск, услуги АПК и сопровождение', '.page-title')
+        search.verify_information_on_page_title('Запуск, услуги АПК и сопровождение')
